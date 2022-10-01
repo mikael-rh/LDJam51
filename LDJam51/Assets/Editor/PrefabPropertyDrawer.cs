@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using System;
 
 [CustomPropertyDrawer(typeof(PrefabOnlyAttribute))]
 public class PrefabOnlyDrawer : PropertyDrawer
@@ -13,7 +14,14 @@ public class PrefabOnlyDrawer : PropertyDrawer
             EditorGUI.LabelField(position, label.text, "Use \"Prefab\" attribute with GameObject fields only!");
             return;
         }
-        property.objectReferenceValue = EditorGUI.ObjectField(position, label.text, property.objectReferenceValue, typeof(GameObject), false);
-        
+
+        Type fieldType = fieldInfo.FieldType;
+                
+        if (fieldType.IsArray)
+            fieldType = fieldType.GetElementType();
+
+
+        property.objectReferenceValue = EditorGUI.ObjectField(position, label.text, property.objectReferenceValue, fieldType, false);
+        return;
     }
 }
