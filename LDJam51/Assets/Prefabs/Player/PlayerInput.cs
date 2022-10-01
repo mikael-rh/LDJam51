@@ -69,7 +69,7 @@ public class PlayerInput : MonoBehaviour
 
         }
 
-        { 
+        {
             // HACK: Do not use input actions, but read the input device directly 
             var keyboard = Keyboard.current;
             bool groundedPlayer = controller.isGrounded;
