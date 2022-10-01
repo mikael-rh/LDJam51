@@ -13,6 +13,12 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     private float turnRate;
 
+#if DEBUG
+    [Tooltip("disable player grabbing mouse :)")]
+    [SerializeField]
+    private bool disableMouseGrab;
+#endif // DEBUG
+
     [SerializeField]
     private CharacterController controller;
 
@@ -46,7 +52,15 @@ public class PlayerInput : MonoBehaviour
             );
             cameraTransform.rotation *= cameraRotation;
 
+#if DEBUG
+            if (disableMouseGrab == false)
+            {
+                mouse.WarpCursorPosition(new Vector2(0, 0));
+            }
+#else
             mouse.WarpCursorPosition(new Vector2(0, 0));
+#endif // DEBUG
+
         }
 
         { 
