@@ -29,11 +29,15 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     private Vector3 cameraRotationBounds;
 
+    [SerializeField]
+    private PlayerState playerState;
+
     private Vector3 playerVelocity;
 
     private void Start()
     {
         Debug.Assert(moveSpeed < sprintSpeed);
+        Debug.Assert(playerState != null);
 
         playerVelocity = new Vector3();
     }
@@ -95,7 +99,14 @@ public class PlayerInput : MonoBehaviour
                 }
 
                 // either use movement speed, or sprint speed
-                float speedModifer = keyboard.shiftKey.isPressed ? sprintSpeed : moveSpeed;
+                float speedModifer;
+                if (keyboard.shiftKey.isPressed && playerState.drainStamina(Time.deltaTime))
+                {
+                    speedModifer = sprintSpeed;
+                } else
+                {
+                    speedModifer = moveSpeed;
+                }
 
                 controller.Move(inputMovement * speedModifer * Time.deltaTime);
             }

@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 577260182374332905}
   - component: {fileID: 6314100388942911098}
   - component: {fileID: 3888471474955088087}
+  - component: {fileID: 5957739889712692585}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -274,3 +275,17 @@ MonoBehaviour:
   controller: {fileID: 6314100388942911098}
   cameraTransform: {fileID: 751295586}
   cameraRotationBounds: {x: 80, y: 0, z: 0}
+--- !u!114 &5957739889712692585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2374948240552825443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b21f5d989f1adc49ad65cb16d7b4a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  staminaConsumptionRate: 0.2
