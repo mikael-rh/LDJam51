@@ -13,12 +13,23 @@ public class SyncViews : MonoBehaviour
     [SerializeField]
     Scrollbar staminaBar;
 
+    [SerializeField]
+    GameObject goalIndicator;
+    Renderer goalIndicatorRenderer;
+    [SerializeField]
+    GameObject uiGoalRightIndicator;
+    [SerializeField]
+    GameObject uiGoalLeftIndicator;
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Assert(playerState != null);
         Debug.Assert(healthBar != null);
         Debug.Assert(staminaBar != null);
+        Debug.Assert(goalIndicator != null);
+
+        goalIndicatorRenderer = goalIndicator.GetComponentInChildren<Renderer>();
     }
 
     // Update is called once per frame
@@ -27,5 +38,25 @@ public class SyncViews : MonoBehaviour
         // HACK: forcing sync each frame for each UI element is bad. Should utilize the setter to update all values when needed ...
         healthBar.size = playerState.HealthFloat;
         staminaBar.size = playerState.StaminaFloat;
+
+        if (playerState.LookingForGoal)
+        {
+            goalIndicator.SetActive(true);
+
+            Vector3 goalDir2D = goalIndicator.transform.position - transform.position;
+            goalDir2D.y = 0;
+            goalDir2D.Normalize();
+
+            float left = Vector3.Angle(-transform.right, goalDir2D);
+            float right = Vector3.Angle(transform.right, goalDir2D);
+            bool goalIndicate = goalIndicatorRenderer.isVisible == false;
+            uiGoalLeftIndicator.SetActive(goalIndicate && (left < right));
+            uiGoalRightIndicator.SetActive(goalIndicate && (right <= left));
+        } else
+        {
+            uiGoalLeftIndicator.SetActive(false);
+            uiGoalLeftIndicator.SetActive(false);
+            goalIndicator.SetActive(false);
+        }
     }
 }
