@@ -17,7 +17,12 @@ public class PlayerState : MonoBehaviour
 
     private float stamina;
     public float StaminaFloat { get => stamina; }
+
     private bool staminaDrainedThisFrame;
+
+    private bool lookingForGoal;
+    public bool LookingForGoal { get => lookingForGoal; set => lookingForGoal = value; }
+
 
 
     // Start is called before the first frame update
@@ -50,9 +55,12 @@ public class PlayerState : MonoBehaviour
         return stamina != 0;
     }
 
+#if DEBUG
     [ContextMenu("Ouch")]
     public void Debug()
     {
         health -= 10;
     }
+#endif // DEBUG
+
 }

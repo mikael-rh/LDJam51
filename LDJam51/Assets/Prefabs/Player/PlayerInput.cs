@@ -124,6 +124,8 @@ public class PlayerInput : MonoBehaviour
             }
             playerVelocity.y += Physics.gravity.y * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
+
+            playerState.LookingForGoal = keyboard.tabKey.isPressed;
         }
     }
 
