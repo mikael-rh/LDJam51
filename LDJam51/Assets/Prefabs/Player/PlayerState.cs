@@ -71,7 +71,7 @@ public class PlayerState : MonoBehaviour
     [ContextMenu("Ouch")]
     public void Debug()
     {
-        health -= 10;
+        ApplyDamage(10);
     }
 #endif // DEBUG
 
