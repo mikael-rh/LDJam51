@@ -100,7 +100,7 @@ public class PlayerInput : MonoBehaviour
 
                 // either use movement speed, or sprint speed
                 float speedModifer;
-                if (keyboard.shiftKey.isPressed && playerState.drainStamina(Time.deltaTime))
+                if (keyboard.shiftKey.isPressed && playerState.DrainStamina(Time.deltaTime))
                 {
                     speedModifer = sprintSpeed;
                 } else
