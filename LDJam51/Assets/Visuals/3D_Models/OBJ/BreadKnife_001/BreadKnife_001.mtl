@@ -1,0 +1,20 @@
+﻿newmtl /Materials
+	map_Kd MI_Metal_Aluminum_SandBlast_MI_Metal_Aluminum_SandBlast_D.bmp
+	map_Ks MI_Metal_Aluminum_SandBlast_MI_Metal_Aluminum_SandBlast_S.bmp
+	bump MI_Metal_Aluminum_SandBlast_MI_Metal_Aluminum_SandBlast_N.bmp
+
+newmtl /Materials
+	map_Kd MI_Metal_Steel_Brushed_MI_Metal_Steel_Brushed_D.bmp
+	map_Ks MI_Metal_Steel_Brushed_MI_Metal_Steel_Brushed_S.bmp
+	bump MI_Metal_Steel_Brushed_MI_Metal_Steel_Brushed_N.bmp
+
+newmtl /Materials
+	map_Kd MI_Rubber_Weatherstrip_MI_Rubber_Weatherstrip_D.bmp
+	map_Ks MI_Rubber_Weatherstrip_MI_Rubber_Weatherstrip_S.bmp
+	bump MI_Rubber_Weatherstrip_MI_Rubber_Weatherstrip_N.bmp
+
+newmtl /Materials
+	map_Kd MI_Metal_Gold_Frosted_MI_Metal_Gold_Frosted_D.bmp
+	map_Ks MI_Metal_Gold_Frosted_MI_Metal_Gold_Frosted_S.bmp
+	bump MI_Metal_Gold_Frosted_MI_Metal_Gold_Frosted_N.bmp
+
