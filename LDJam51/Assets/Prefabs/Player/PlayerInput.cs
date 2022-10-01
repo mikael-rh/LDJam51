@@ -9,6 +9,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
     [SerializeField]
+    private float sprintSpeed;
+    [SerializeField]
     private float jumpHeight;
     [SerializeField]
     private float turnRate;
@@ -24,11 +26,15 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField]
     private Transform cameraTransform;
+    [SerializeField]
+    private Vector3 cameraRotationBounds;
 
-    public Vector3 playerVelocity;
+    private Vector3 playerVelocity;
 
     private void Start()
     {
+        Debug.Assert(moveSpeed < sprintSpeed);
+
         playerVelocity = new Vector3();
     }
 
@@ -50,7 +56,7 @@ public class PlayerInput : MonoBehaviour
                 0f,
                 0f
             );
-            cameraTransform.rotation *= cameraRotation;
+            cameraTransform.localRotation = ClampRotation(cameraTransform.localRotation * cameraRotation, cameraRotationBounds);
 
 #if DEBUG
             if (disableMouseGrab == false)
@@ -63,7 +69,7 @@ public class PlayerInput : MonoBehaviour
 
         }
 
-        { 
+        {
             // HACK: Do not use input actions, but read the input device directly 
             var keyboard = Keyboard.current;
             bool groundedPlayer = controller.isGrounded;
@@ -87,7 +93,11 @@ public class PlayerInput : MonoBehaviour
                 {
                     inputMovement += transform.right;
                 }
-                controller.Move(inputMovement * moveSpeed * Time.deltaTime);
+
+                // either use movement speed, or sprint speed
+                float speedModifer = keyboard.shiftKey.isPressed ? sprintSpeed : moveSpeed;
+
+                controller.Move(inputMovement * speedModifer * Time.deltaTime);
             }
 
             // gravity does not affect grounded player
@@ -104,5 +114,27 @@ public class PlayerInput : MonoBehaviour
             playerVelocity.y += Physics.gravity.y * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
         }
+    }
+
+    private static Quaternion ClampRotation(Quaternion q, Vector3 bounds)
+    {
+        q.x /= q.w;
+        q.y /= q.w;
+        q.z /= q.w;
+        q.w = 1.0f;
+
+        float angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.x);
+        angleX = Mathf.Clamp(angleX, -bounds.x, bounds.x);
+        q.x = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleX);
+
+        float angleY = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.y);
+        angleY = Mathf.Clamp(angleY, -bounds.y, bounds.y);
+        q.y = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleY);
+
+        float angleZ = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.z);
+        angleZ = Mathf.Clamp(angleZ, -bounds.z, bounds.z);
+        q.z = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleZ);
+
+        return q.normalized;
     }
 }
