@@ -5,10 +5,7 @@ using UnityEngine.AI;
 class EnemySpawner : MonoBehaviour
 {
     [PrefabOnly]
-    public GameObject sampleEnemy; // TODO: Allow for different enemies
-
-    [PrefabOnly]
-    public GameObject[] sampleEnemies; // TODO: Allow for different enemies
+    public NavMeshAgent sampleEnemy; // TODO: Allow for different enemies
 
     [SerializeField] 
     private Camera playerCamera;
@@ -44,7 +41,8 @@ class EnemySpawner : MonoBehaviour
             if (NavMesh.SamplePosition(p, out hit, 1.0f, NavMesh.AllAreas))
             {
                 // TODO: Enemy Pooling?
-                Instantiate(sampleEnemy, hit.position, Quaternion.identity);
+                Instantiate(sampleEnemy, hit.position + Vector3.up * sampleEnemy.baseOffset, Quaternion.identity);
+
                 spawned++;
             }
         }
@@ -54,11 +52,9 @@ class EnemySpawner : MonoBehaviour
         Gizmos.DrawWireCube(levelBounds.center, levelBounds.size);
     }
 
-    private void Update()
+    [ContextMenu("Spawn 5")]
+    private void Spawn5()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            SpawnEnemies(5);
-        }
+        SpawnEnemies(5);
     }
 }
