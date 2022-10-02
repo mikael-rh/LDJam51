@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8726945170488154326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8726945170488154325}
+  - component: {fileID: 8726945170488154323}
+  - component: {fileID: 8726945170488154324}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8726945170488154325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8726945170488154326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8726945170488154323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8726945170488154326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878f414732543f64b9909a92c2e79a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistanceFromTarget: 10
+  levelBounds:
+    m_Center: {x: 0, y: 2, z: 0}
+    m_Extent: {x: 50, y: 2, z: 50}
+--- !u!114 &8726945170488154324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8726945170488154326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fff1e0a702f9db46adeb513c0f6a5da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnableEnemyIndices: 0100000002000000
+  poolingConfigs:
+  - {fileID: 11400000, guid: f4960a8aa65646b4bae2829b14f282a3, type: 2}
+  - {fileID: 11400000, guid: 3a98612c99343b74196894c5e591c013, type: 2}
+  - {fileID: 11400000, guid: 83b7386c01accfb4d97594d12a8593b5, type: 2}
+  - {fileID: 11400000, guid: b45cefd2ad676e8499736b9ecf76e33b, type: 2}
+  - {fileID: 11400000, guid: 8de71eca50df6fb4baf58fa1d6fa5824, type: 2}
+  enemyTarget: {fileID: 0}
+  spawnAmount: 10
+  spawner: {fileID: 8726945170488154323}
+  spawnOnStart: 1

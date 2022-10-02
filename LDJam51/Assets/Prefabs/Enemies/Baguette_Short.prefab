@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrades:
-  - {fileID: 808366907342926264, guid: 77e5c4329c122ff478d1c9a90bc69db6, type: 3}
+  - {fileID: 11400000, guid: f4960a8aa65646b4bae2829b14f282a3, type: 2}
 --- !u!4 &4595250975136054701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3324464068179278725, guid: a71ea4e3d673712499f68c732d25448c, type: 3}
