@@ -16,6 +16,9 @@ public class OnEnemyDeath : MonoBehaviour
     private Enemy enemy;
 
     [SerializeField]
+    private UpgradeEnemy upgrader;
+
+    [SerializeField]
     private float deathTime;
     private float timeDead;
 
@@ -29,6 +32,11 @@ public class OnEnemyDeath : MonoBehaviour
     public void Trigger()
     {
         if (isTriggered) return;
+
+        if (upgrader != null)
+        {
+            upgrader.enabled = false;
+        }
 
         isTriggered = true;
         rb.constraints = RigidbodyConstraints.None;
@@ -48,6 +56,11 @@ public class OnEnemyDeath : MonoBehaviour
             }
             timeDead += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
+        }
+
+        if (upgrader != null)
+        {
+            upgrader.enabled = true;
         }
 
         rb.constraints = rbConstraints;

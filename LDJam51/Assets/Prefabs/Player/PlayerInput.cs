@@ -127,16 +127,28 @@ public class PlayerInput : MonoBehaviour
             {
                 playerVelocity.y = 0f;
             }
-            // apply jump height to player velocity 
-            if (groundedPlayer && keyboard.spaceKey.wasPressedThisFrame)
+
             {
-                // amplify by the gravity to get closer to configured jump height
-                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * Physics.gravity.y);
+                // apply jump height to player velocity 
+                if (groundedPlayer && keyboard.spaceKey.wasPressedThisFrame)
+                {
+                    // amplify by the gravity to get closer to configured jump height
+                    playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * Physics.gravity.y);
+                }
+                playerVelocity.y += Physics.gravity.y * Time.deltaTime;
+                controller.Move(playerVelocity * Time.deltaTime);
+
             }
-            playerVelocity.y += Physics.gravity.y * Time.deltaTime;
-            controller.Move(playerVelocity * Time.deltaTime);
 
             playerState.LookingForGoal = keyboard.tabKey.isPressed;
+
+            if (keyboard.digit1Key.wasPressedThisFrame)
+            {
+                playerState.EquippedWeaponIndex = 0;
+            } else if (keyboard.digit2Key.wasPressedThisFrame)
+            {
+                playerState.EquippedWeaponIndex = 1;
+            }
         }
     }
 
