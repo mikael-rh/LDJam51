@@ -2,59 +2,53 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-class EnemySpawner : MonoBehaviour
-{
-    [PrefabOnly]
-    public NavMeshAgent sampleEnemy; // TODO: Allow for different enemies
+public class EnemySpawner : MonoBehaviour {
+	public Transform enemyTarget;
 
-    [SerializeField] 
-    private Camera playerCamera;
+	[SerializeField]
+	private float minDistanceFromTarget;
 
-    [SerializeField]
-    private float minDistanceFromPlayer;
+	[SerializeField]
+	Bounds levelBounds; // level bounds in worldspace
 
-    [SerializeField]
-    Bounds levelBounds; // level bounds in worldspace
+	//  TODO:  Use triangulation to spawn on mesh?
+	// Requires balancing based on triangle area etc. Relatively cheap to compute, 
+	// but requires a lot of boilerplate
 
-    //  TODO:  Use triangulation to spawn on mesh?
-    // Requires balancing based on triangle area etc. Relatively cheap to compute, 
-    // but requires a lot of boilerplate
-    
-    //private void Awake()
-    //{
-    //    //NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
-    //}
+	//private void Awake()
+	//{
+	//    //NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
+	//}
 
-    public void SpawnEnemies(int count)
-    {
-        NavMeshHit hit;
-        Vector3 min = levelBounds.min;
-        Vector3 max = levelBounds.max;
-        int spawned = 0;
-        while (spawned < count)
-        {
-            Vector3 p = new Vector3(
-                Random.Range(min.x, max.x), 
-                Random.Range(min.y, max.y),
-                Random.Range(min.z, max.z)
-            );
-            if (NavMesh.SamplePosition(p, out hit, 1.0f, NavMesh.AllAreas))
-            {
-                // TODO: Enemy Pooling?
-                Instantiate(sampleEnemy, hit.position + Vector3.up * sampleEnemy.baseOffset, Quaternion.identity);
+	public void SpawnEnemiesAtRandom(GameObject enemyPrefab, int count) {
+		Vector3 min = levelBounds.min;
+		Vector3 max = levelBounds.max;
+		int spawned = 0;
+		while (spawned < count) {
+			Vector3 p = new Vector3(
+				Random.Range(min.x, max.x),
+				Random.Range(min.y, max.y),
+				Random.Range(min.z, max.z)
+			);
 
-                spawned++;
-            }
-        }
-    }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireCube(levelBounds.center, levelBounds.size);
-    }
+			if (Vector3.Distance(p, enemyTarget.position) >= minDistanceFromTarget
+				&& NavMesh.SamplePosition(p, out NavMeshHit hit, 1.0f, NavMesh.AllAreas)) {
+				// TODO: Enemy Pooling?
+				NavMeshAgent agent = enemyPrefab.GetComponent<NavMeshAgent>();
+				SpawnEnemyAt(enemyPrefab, hit.position + Vector3.up * agent.baseOffset);
+				spawned++;
+			}
+		}
 
-    [ContextMenu("Spawn 5")]
-    private void Spawn5()
-    {
-        SpawnEnemies(5);
-    }
+		Debug.Log($"Spawned {count} {enemyPrefab.name}");
+	}
+
+	public void SpawnEnemyAt(GameObject enemyPrefab, Vector3 position, Quaternion? rotation = null) {
+		GameObject instance = Instantiate(enemyPrefab, position, rotation ?? Quaternion.identity);
+		instance.GetComponent<Enemy>().target = enemyTarget;
+	}
+
+	private void OnDrawGizmosSelected() {
+		Gizmos.DrawWireCube(levelBounds.center, levelBounds.size);
+	}
 }
