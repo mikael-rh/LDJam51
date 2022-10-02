@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
-
+using System.Threading.Tasks;
 
 public class Timer {
 	public Timer() { }
 
 	public Timer(float duration) {
-		Reset(duration);
+		Start(duration);
 	}
 
-	public bool Enabled { get; private set; }
+	public bool Enabled { get; set; }
 
 	public float StartTime { get; private set; }
 
@@ -28,7 +28,7 @@ public class Timer {
 	/// Enables and resets the timer progress
 	/// </summary>
 	/// <param name="duration">New duration (if null, duration remains unchanged)</param>
-	public void Reset(float? duration = null) {
+	public void Start(float? duration = null) {
 		if (duration != null) Duration = duration.Value;
 
 		StartTime = CurrentTime;
@@ -55,7 +55,18 @@ public class Timer {
 	/// <returns>True if the timer is done and enabled</returns>
 	public bool PerformMany() {
 		if (!Enabled || !Done) return false;
-		Reset();
+		Start();
 		return true;
+	}
+
+	public static async void Schedule(System.Action action, int millisecondsDelay, System.Threading.CancellationToken? cancellationToken = null) {
+		if (cancellationToken == null) {
+			await Task.Delay(millisecondsDelay);
+		}
+		else {
+			await Task.Delay(millisecondsDelay, cancellationToken.Value);
+		}
+
+		action();
 	}
 }

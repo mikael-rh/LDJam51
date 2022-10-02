@@ -10,8 +10,15 @@ public class Enemy : MonoBehaviour {
 	private Rigidbody rb;
 	private NavMeshAgent agent;
 
-	private Timer wakeupTimer;
-	private bool IsAwake => wakeupTimer != null && wakeupTimer.Done;
+	public bool FollowTarget {
+		get => agent != null && agent.isActiveAndEnabled;
+		set {
+			if (agent != null) {
+				agent.enabled = value;
+				if (!value) rb.velocity = Vector3.zero;
+			}
+		}
+	}
 
 	private void Start() {
 		rb = GetComponent<Rigidbody>();
@@ -21,18 +28,18 @@ public class Enemy : MonoBehaviour {
 			rb.AddForce(transform.forward * spawnForce, ForceMode.VelocityChange);
 		}
 
-		wakeupTimer = new (wakeupTime);
+		Timer.Schedule(() => FollowTarget = true, Mathf.RoundToInt(wakeupTime * 1000));
 	}
 
 	private void Update() {
-		if (IsAwake && target != null) {
+		if (FollowTarget && target != null) {
 			agent.SetDestination(target.position);
 			rb.velocity = agent.velocity;
 		}
 	}
 
 	private void OnDrawGizmosSelected() {
-		if (IsAwake && agent != null && target != null) {
+		if (FollowTarget && agent != null && target != null) {
 			Gizmos.color = Color.magenta;
 			Gizmos.DrawLine(transform.position, agent.destination);
 		}
