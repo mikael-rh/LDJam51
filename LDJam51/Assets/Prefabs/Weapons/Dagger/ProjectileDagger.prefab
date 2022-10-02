@@ -204,7 +204,7 @@ MonoBehaviour:
         m_MethodName: EmmitSound
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 4c40a2b207af1d644b81870b3132eebf, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: eff0085747fd8f34fb67c76931e2b19c, type: 2}
           m_ObjectArgumentAssemblyTypeName: AudioGroup, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
