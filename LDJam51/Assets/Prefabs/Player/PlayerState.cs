@@ -24,8 +24,8 @@ public class PlayerState : MonoBehaviour
     private bool lookingForGoal;
     public bool LookingForGoal { get => lookingForGoal; set => lookingForGoal = value; }
 
-    UnityEvent onDeath;
-    public UnityEvent OnDeath { get => onDeath; }
+    [SerializeField]
+    private OnPlayerDeath onDeath;
 
     // TODO: abstraction for weapon
     [SerializeField]
@@ -68,7 +68,7 @@ public class PlayerState : MonoBehaviour
 
         if (health <= 0)
         {
-            onDeath.Invoke();
+            onDeath.Trigger();
         }
     }
 
@@ -76,7 +76,7 @@ public class PlayerState : MonoBehaviour
     [ContextMenu("Ouch")]
     public void Debug()
     {
-        ApplyDamage(10);
+        ApplyDamage(100);
     }
 #endif // DEBUG
 
