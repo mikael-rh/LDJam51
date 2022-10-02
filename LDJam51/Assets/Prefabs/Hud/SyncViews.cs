@@ -55,7 +55,7 @@ public class SyncViews : MonoBehaviour
         } else
         {
             uiGoalLeftIndicator.SetActive(false);
-            uiGoalLeftIndicator.SetActive(false);
+            uiGoalRightIndicator.SetActive(false);
             goalIndicator.SetActive(false);
         }
     }
