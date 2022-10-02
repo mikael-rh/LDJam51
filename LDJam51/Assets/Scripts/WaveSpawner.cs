@@ -47,7 +47,6 @@ public class WaveSpawner : MonoBehaviour {
             GameObject[] pool = pools[enemyTypeIndex];
             GameObject instance = pool[nextInstance[enemyTypeIndex]];
             nextInstance[enemyTypeIndex] = (nextInstance[enemyTypeIndex] + 1) % pool.Length;
-            Debug.Log(nextInstance[enemyTypeIndex]);
 
             bool success = spawner.SpawnEnemyAtRandom(instance, enemyTarget.position);
             if (!success)
