@@ -3,6 +3,7 @@ using UnityEngine;
 public class DamageOnContact : MonoBehaviour {
 	public int damage;
 	public float cooldown;
+	public bool includeTriggers;
 
 	private readonly Timer cooldownTimer = new();
 
@@ -23,10 +24,10 @@ public class DamageOnContact : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		TryDamage(other.gameObject);
+		if (includeTriggers) TryDamage(other.gameObject);
 	}
 
 	private void OnTriggerStay(Collider other) {
-		TryDamage(other.gameObject);
+		if (includeTriggers) TryDamage(other.gameObject);
 	}
 }
