@@ -17,14 +17,14 @@ public class WaveSpawner : MonoBehaviour {
 	public bool spawnOnStart;
 
 	private void Start() {
-        nextInstance = new int[poolingConfigs.Length];
 
         {
+            nextInstance = new int[poolingConfigs.Length];
             pools = new GameObject[poolingConfigs.Length][];
 
-            int i = 0;
-            foreach  (EnemyPoolConfig config in poolingConfigs)
+            for (int i = 0; i < pools.Length; i++)
             {
+                EnemyPoolConfig config = poolingConfigs[i];
                 pools[i] = new GameObject[config.poolAmount];
                 for (int j = 0; j < config.poolAmount; j++)
                 {
@@ -32,9 +32,7 @@ public class WaveSpawner : MonoBehaviour {
                     pools[i][j].GetComponent<Enemy>().target = enemyTarget;
                     pools[i][j].SetActive(false);
                 }
-                i += 1;
             }
-
         }
 
 		FindObjectOfType<GlobalIntervalTimer>().PerformMany(Spawn);
@@ -47,7 +45,6 @@ public class WaveSpawner : MonoBehaviour {
             GameObject[] pool = pools[enemyTypeIndex];
             GameObject instance = pool[nextInstance[enemyTypeIndex]];
             nextInstance[enemyTypeIndex] = (nextInstance[enemyTypeIndex] + 1) % pool.Length;
-
             bool success = spawner.SpawnEnemyAtRandom(instance, enemyTarget.position);
             if (!success)
             {
