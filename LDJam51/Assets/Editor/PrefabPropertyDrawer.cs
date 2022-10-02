@@ -11,7 +11,7 @@ public class PrefabOnlyDrawer : PropertyDrawer
         // Now draw the property as a Slider or an IntSlider based on whether it's a float or integer.
         if (property.propertyType != SerializedPropertyType.ObjectReference)
         {
-            EditorGUI.LabelField(position, label.text, "Use \"Prefab\" attribute with GameObject fields only!");
+            EditorGUI.LabelField(position, label.text, "\"PrefabOnly\" attribute can only be used with GameObject and Component fields!");
             return;
         }
 
