@@ -70,10 +70,11 @@ public class PlayerInput : MonoBehaviour
 #if DEBUG
             if (disableMouseGrab == false)
             {
-                mouse.WarpCursorPosition(new Vector2(0, 0));
+                
+                mouse.WarpCursorPosition(new Vector2(100, 100));
             }
 #else
-            mouse.WarpCursorPosition(new Vector2(0, 0));
+            mouse.WarpCursorPosition(new Vector2(100, 100));
 #endif // DEBUG
 
         }
@@ -85,27 +86,32 @@ public class PlayerInput : MonoBehaviour
 
             {
                 Vector3 inputMovement = new Vector3();
+                bool anyInput = false;
                 if (keyboard.wKey.isPressed)
                 {
                     inputMovement += transform.forward;
+                    anyInput = true;
                 }
                 if (keyboard.sKey.isPressed)
                 {
                     inputMovement -= transform.forward;
+                    anyInput = true;
                 }
 
                 if (keyboard.aKey.isPressed)
                 {
                     inputMovement -= transform.right;
+                    anyInput = true;
                 }
                 if (keyboard.dKey.isPressed)
                 {
                     inputMovement += transform.right;
+                    anyInput = true;
                 }
 
                 // either use movement speed, or sprint speed
                 float speedModifer;
-                if (keyboard.shiftKey.isPressed && playerState.DrainStamina(Time.deltaTime))
+                if (keyboard.shiftKey.isPressed && anyInput && playerState.DrainStamina(Time.deltaTime))
                 {
                     speedModifer = sprintSpeed;
                 } else

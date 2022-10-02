@@ -244,6 +244,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Donut_Filled
       objectReference: {fileID: 0}
+    - target: {fileID: 3324464068179278724, guid: a71ea4e3d673712499f68c732d25448c, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3324464068179278725, guid: a71ea4e3d673712499f68c732d25448c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -311,6 +315,20 @@ MonoBehaviour:
   - {fileID: 1235887944721949992, guid: d7be289b6054a174da3f232b09e6900d, type: 3}
   - {fileID: 5732832446751230356, guid: 94f42983316e1b5449d31249fecb6adc, type: 3}
   delay: 10
+--- !u!114 &4864400283110292827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025279282665523116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca7adfd7d2410244a6a911cb0a9c8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 0
 --- !u!4 &6025279282665523117 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3324464068179278725, guid: a71ea4e3d673712499f68c732d25448c, type: 3}

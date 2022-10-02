@@ -11,6 +11,9 @@ public class Stick : MonoBehaviour
     [SerializeField]
     private float stickThreshold;
 
+    [SerializeField]
+    private Collider[] colliders;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,6 +23,11 @@ public class Stick : MonoBehaviour
         {
             parentRigidBody.transform.parent = other.transform;
             parentRigidBody.isKinematic = true;
+            
+            foreach (Collider collider in colliders)
+            {
+                collider.enabled = false;
+            }
         }
     }
 
@@ -27,5 +35,10 @@ public class Stick : MonoBehaviour
     {
         parentRigidBody.transform.parent = null;
         parentRigidBody.isKinematic = false;
+
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = true;
+        }
     }
 }

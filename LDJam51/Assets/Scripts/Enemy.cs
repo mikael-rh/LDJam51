@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour {
 			rb.AddForce(transform.forward * spawnForce, ForceMode.VelocityChange);
 		}
 
-		wakeupTimer = new(wakeupTime);
+		wakeupTimer = new (wakeupTime);
 	}
 
 	private void Update() {

@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (rb.velocity.sqrMagnitude < damageThreshold) return;
+        //if (rb.velocity.sqrMagnitude < damageThreshold) return;
 
         EnemyState enemyState;
         if (collision.gameObject.TryGetComponent(out enemyState))
