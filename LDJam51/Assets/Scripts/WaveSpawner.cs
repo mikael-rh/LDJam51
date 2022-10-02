@@ -12,6 +12,9 @@ public class WaveSpawner : MonoBehaviour {
     [SerializeField]
     private Transform enemyTarget;
 
+    [SerializeField]
+    private Vector3 intialInstancePosition;
+
     public int spawnAmount = 1;
 	public EnemySpawner spawner;
 	public bool spawnOnStart;
@@ -28,7 +31,7 @@ public class WaveSpawner : MonoBehaviour {
                 pools[i] = new GameObject[config.poolAmount];
                 for (int j = 0; j < config.poolAmount; j++)
                 {
-                    pools[i][j] = Instantiate(config.protoype);
+                    pools[i][j] = Instantiate(config.protoype, intialInstancePosition, Quaternion.identity);
                     pools[i][j].GetComponent<Enemy>().target = enemyTarget;
                     pools[i][j].SetActive(false);
                 }
@@ -49,7 +52,7 @@ public class WaveSpawner : MonoBehaviour {
             // TODO: fix this
             if (enemyTarget != null)
             {
-                bool success = spawner.SpawnEnemyAtRandom(instance, enemyTarget.position);
+                bool success = spawner.SpawnEnemyAtRandom(instance, enemyTarget);
                 if (!success)
                 {
                     Debug.Log($"Failed to spawn {instance.name}");

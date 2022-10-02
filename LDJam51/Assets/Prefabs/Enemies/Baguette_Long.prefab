@@ -11,9 +11,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4595250975136054698, guid: cb9a6326ac28dac4cb56b975894d26f5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4595250975136054700, guid: cb9a6326ac28dac4cb56b975894d26f5, type: 3}
       propertyPath: m_Name
       value: Baguette_Long
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595250975136054700, guid: cb9a6326ac28dac4cb56b975894d26f5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4595250975136054701, guid: cb9a6326ac28dac4cb56b975894d26f5, type: 3}
       propertyPath: m_RootOrder

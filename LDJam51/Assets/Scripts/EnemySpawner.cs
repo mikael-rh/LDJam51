@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour {
 	[SerializeField]
 	Bounds levelBounds; // level bounds in worldspace 
 
-	public bool SpawnEnemyAtRandom(GameObject enemyInstance, Vector3 targetPosition) {
+	public bool SpawnEnemyAtRandom(GameObject enemyInstance, Transform target) {
 		Vector3 min = levelBounds.min;
 		Vector3 max = levelBounds.max;
 
@@ -23,7 +23,9 @@ public class EnemySpawner : MonoBehaviour {
 			);
 
 			if (NavMesh.SamplePosition(p, out NavMeshHit hit, 1.0f, NavMesh.AllAreas)
-				&& Vector3.Distance(p, targetPosition) >= minDistanceFromTarget) {
+				&& Vector3.Distance(p, target.position) >= minDistanceFromTarget) {
+                var enemy = enemyInstance.GetComponent<Enemy>();
+                enemy.target = target;
                 enemyInstance.SetActive(true);
                 NavMeshAgent agent = enemyInstance.GetComponent<NavMeshAgent>();
                 enemyInstance.transform.position = hit.position + Vector3.up * agent.baseOffset;

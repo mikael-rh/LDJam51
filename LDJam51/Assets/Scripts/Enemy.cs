@@ -24,12 +24,11 @@ public class Enemy : MonoBehaviour {
 		wakeupTimer = new (wakeupTime);
 	}
 
-	private void Update() {
-		if (IsAwake && target != null) {
-			agent.SetDestination(target.position);
-			rb.velocity = agent.velocity;
-		}
-	}
+    private void OnEnable()
+    {
+        if (IsAwake && target != null) 
+	        agent.SetDestination(target.position);
+    }
 
 	private void OnDrawGizmosSelected() {
 		if (IsAwake && agent != null && target != null) {
