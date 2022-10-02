@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class GlobalIntervalTimer : MonoBehaviour {
+/// <summary>
+/// Ensures that all subscribed actions are performed simultaneously at a fixed interval
+/// </summary>
+public class GameInterval : MonoBehaviour {
 	public float interval = 10;
 
-	private static System.Action GlobalClock;
+	private System.Action PerformManyClock, PerformOnceClock;
 
 	private int prevIntervalI;
 
@@ -19,24 +22,27 @@ public class GlobalIntervalTimer : MonoBehaviour {
 		int intervalI = IntervalI;
 		if (intervalI > prevIntervalI) {
 			prevIntervalI = intervalI;
-			GlobalClock?.Invoke();
+			PerformManyClock?.Invoke();
+			PerformOnceClock?.Invoke();
+			PerformOnceClock = null;
 		}
+	}
+
+	private void OnDestroy() {
+		PerformManyClock = null;
+		PerformOnceClock = null;
 	}
 
 	public void PerformOnce(System.Action action) {
-		void SingleCall() {
-			StopPerforming(SingleCall);
-			action();
-		}
-
-		GlobalClock += SingleCall;
+		PerformOnceClock += action;
 	}
 
 	public void PerformMany(System.Action action) {
-		GlobalClock += action;
+		PerformManyClock += action;
 	}
 
 	public void StopPerforming(System.Action action) {
-		GlobalClock -= action;
+		PerformOnceClock -= action;
+		PerformManyClock -= action;
 	}
 }
