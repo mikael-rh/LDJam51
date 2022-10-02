@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726945170488154323, guid: a08b0a1ec9159f545916eadeafbbad21, type: 3}
       propertyPath: levelBounds.m_Center.y
-      value: 106
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 8726945170488154323, guid: a08b0a1ec9159f545916eadeafbbad21, type: 3}
       propertyPath: levelBounds.m_Center.z
@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8726945170488154324, guid: a08b0a1ec9159f545916eadeafbbad21, type: 3}
       propertyPath: intialInstancePosition.y
-      value: 108.51881
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 8726945170488154324, guid: a08b0a1ec9159f545916eadeafbbad21, type: 3}
       propertyPath: intialInstancePosition.z
