@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
@@ -17,6 +18,11 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float damageThreshold;
 
+    [SerializeField]
+    private UnityEvent onLaunch;
+    [SerializeField]
+    private UnityEvent onHit;
+
     public void Launch(Vector3 position, Quaternion initialOrientation, Vector3 direction, float speed)
     {
         if (sticker != null) {
@@ -29,6 +35,7 @@ public class Projectile : MonoBehaviour
 
         rb.AddForce(direction * speed, ForceMode.VelocityChange);
         rb.angularVelocity = initialOrientation * new Vector3(-30, 0, 0);
+        onLaunch.Invoke();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -39,6 +46,7 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out enemyState))
         {
             enemyState.ApplyDamage(stats.damage, collision.GetContact(0));
+            onHit.Invoke();
         }
     }
 }
