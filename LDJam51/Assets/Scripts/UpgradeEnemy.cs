@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class UpgradeEnemy : MonoBehaviour {
 	public GameObject[] upgrades = new GameObject[0];
-	public float delay = 10;
 
 	private EnemySpawner spawner;
 
 	private void Start() {
 		// TODO: Change if there will be more than one active spawner
 		spawner = FindObjectOfType<EnemySpawner>();
-		if (upgrades.Length == 0) Debug.LogError($"No upgrades provided. {name} will be destroyed in {delay} seconds!");
+		Debug.Assert(upgrades.Length > 0);
 
 		FindObjectOfType<GlobalIntervalTimer>().PerformOnce(Upgrade);
 	}
