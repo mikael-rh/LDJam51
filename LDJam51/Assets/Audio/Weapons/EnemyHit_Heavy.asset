@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 475af69c4475e27409bc4b2f57a29ae0, type: 3}
   pitchRange:
     min: 0.102923244
-    max: 0.1972219
+    max: 1.0942744
   volumeRange:
     min: 0.9203352
     max: 1
