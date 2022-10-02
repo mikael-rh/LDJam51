@@ -35,7 +35,7 @@ public class WaveSpawner : MonoBehaviour {
             }
         }
 
-		FindObjectOfType<GlobalIntervalTimer>().PerformMany(Spawn);
+		FindObjectOfType<GameInterval>().PerformMany(Spawn);
 		if (spawnOnStart) Spawn();
 	}
 
