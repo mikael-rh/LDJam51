@@ -1,6 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyAttack : MonoBehaviour {
+	public UnityEvent OnAttack = new UnityEvent();
+
 	public Enemy enemy;
 	public Animator animator;
 	public string stateName = "attack";
@@ -35,6 +38,8 @@ public class EnemyAttack : MonoBehaviour {
 		enemy.FollowTarget = false;
 		durationTimer.Start(duration);
 		cooldownTimer.Start(cooldown);
+
+		OnAttack.Invoke();
 		return true;
 	}
 
