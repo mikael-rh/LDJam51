@@ -62,6 +62,11 @@ public class PlayerInput : MonoBehaviour
             );
             cameraTransform.localRotation = ClampRotation(cameraTransform.localRotation * cameraRotation, cameraRotationBounds);
 
+            if (mouse.leftButton.wasPressedThisFrame)
+            {
+                playerState.Dagger.Fire(cameraTransform.forward);
+            }
+
 #if DEBUG
             if (disableMouseGrab == false)
             {

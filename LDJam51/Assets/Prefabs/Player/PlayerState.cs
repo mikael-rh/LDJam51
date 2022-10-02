@@ -27,6 +27,11 @@ public class PlayerState : MonoBehaviour
     UnityEvent onDeath;
     public UnityEvent OnDeath { get => onDeath; }
 
+    // TODO: abstraction for weapon
+    [SerializeField]
+    private DaggerProjectile dagger;
+    public DaggerProjectile Dagger { get => dagger; }
+
     // Start is called before the first frame update
     void Start()
     {

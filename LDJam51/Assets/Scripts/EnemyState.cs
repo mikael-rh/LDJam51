@@ -7,7 +7,12 @@ public class EnemyState : MonoBehaviour
     [SerializeField]
     private int maxHealth;
 
-    private int health;
+    public int health;
+
+    public void Start()
+    {
+        health = maxHealth;
+    }
 
 
     public void ApplyDamage(int damage)
