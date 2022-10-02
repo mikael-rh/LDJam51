@@ -64,7 +64,7 @@ public class PlayerInput : MonoBehaviour
 
             if (mouse.leftButton.wasPressedThisFrame)
             {
-                playerState.Dagger.Fire(cameraTransform.forward);
+                playerState.EquippedWeapon.Fire(cameraTransform.forward);
             }
 
 #if DEBUG

@@ -29,8 +29,8 @@ public class PlayerState : MonoBehaviour
 
     // TODO: abstraction for weapon
     [SerializeField]
-    private DaggerProjectile dagger;
-    public DaggerProjectile Dagger { get => dagger; }
+    private Weapon equippedWeapon;
+    public Weapon EquippedWeapon { get => equippedWeapon; }
 
     // Start is called before the first frame update
     void Start()
