@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DaggerProjectile : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
 
     const int POOL_SIZE = 32;
