@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
         EnemyState enemyState;
         if (collision.gameObject.TryGetComponent(out enemyState))
         {
-            enemyState.ApplyDamage(stats.damage);
+            enemyState.ApplyDamage(stats.damage, collision.GetContact(0));
         }
     }
 }
