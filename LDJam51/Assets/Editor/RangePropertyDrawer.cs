@@ -55,7 +55,9 @@ public class RangeDrawer : PropertyDrawer
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         XRangeAttribute range = attribute as XRangeAttribute;
-        // Now draw the property as a Slider or an IntSlider based on whether it's a float or integer.
+
+        label = EditorGUI.BeginProperty(position, label, property);
+
         if (property.propertyType == SerializedPropertyType.Float)
             EditorGUI.Slider(position, property, range.min, range.max, label);
         else if (property.propertyType == SerializedPropertyType.Integer)
@@ -120,5 +122,7 @@ public class RangeDrawer : PropertyDrawer
                 EditorGUI.LabelField(position, label.text, "Use Range with float or int, FloatRange or IntRange.");
             }
         }
+
+        EditorGUI.EndProperty();
     }
 }

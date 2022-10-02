@@ -28,22 +28,6 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
---- !u!244 &-3496842375912867708
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: 00524ae7dcad0bb4eb326107449d9638
-  m_EffectName: Distortion
-  m_MixLevel: c2c545f1f28068249852dcda95417534
-  m_Parameters:
-  - m_ParameterName: Level
-    m_GUID: d99822bb66efe2b4b8733a39333b3985
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!243 &-2311742224716886212
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -59,8 +43,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -6476409644777961185}
-  - {fileID: -3496842375912867708}
-  m_UserColorIndex: 0
+  m_UserColorIndex: 3
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
@@ -125,7 +108,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 24400004}
-  m_UserColorIndex: 0
+  m_UserColorIndex: 1
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
@@ -153,9 +136,21 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: c0b1eab2d69e5844b90b99590f3e3a75
   m_FloatValues:
+    868904e0a9ba4bc49af8d7e429b1bf42: -3226
+    f7dffcb1a6ddcc545bdeedccd3ee5778: -10000
     377ba0924df1cd84e9d3c965ce0490f7: 0
     e884bed3a97144043bccfe2a2f69dc1a: 0.04171297
     a868cee487cae774b90dc7501ed384f7: 1
+    cf5d8c0581866974ca33df2fc31d176c: 30
+    e7357e27649e00d4f9a6a588d561b594: 423
+    ae2d5ff7782f429439e12ce8b7be40f5: 10
+    2c6a8be92fb11b44686ef44269d0eece: 173
+    7410772baddddf149a8be95e6e146399: 30
+    d99822bb66efe2b4b8733a39333b3985: 0.73
+    78bc9efc290fb58459904297dfff20ee: 5
+    49f9b21d9ba25254a9013c1472001620: -32.9
+    bedcd49eb4709614da63ebd1e45f8169: 1.81
+    bb07b46fc0416b0448b6f325e4769389: 0
   m_TransitionOverrides: {}
 --- !u!244 &892684015513076618
 AudioMixerEffectController:
