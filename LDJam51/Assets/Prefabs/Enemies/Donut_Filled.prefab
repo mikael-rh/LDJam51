@@ -242,8 +242,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrades:
-  - {fileID: 1235887944721949992, guid: d7be289b6054a174da3f232b09e6900d, type: 3}
-  - {fileID: 5732832446751230356, guid: 94f42983316e1b5449d31249fecb6adc, type: 3}
+  - {fileID: 11400000, guid: b45cefd2ad676e8499736b9ecf76e33b, type: 2}
+  - {fileID: 11400000, guid: 8de71eca50df6fb4baf58fa1d6fa5824, type: 2}
 --- !u!4 &6025279282665523117 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3324464068179278725, guid: a71ea4e3d673712499f68c732d25448c, type: 3}
