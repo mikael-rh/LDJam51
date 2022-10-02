@@ -14,10 +14,6 @@ public class UpgradeEnemy : MonoBehaviour {
 		FindObjectOfType<GameInterval>().PerformOnce(Upgrade);
 	}
 
-	private void OnDestroy() {
-		FindObjectOfType<GameInterval>().StopPerforming(Upgrade);
-	}
-
 	private void Upgrade() {
 		foreach (EnemyPoolConfig upgrade in upgrades) {
 			spawner.ManualSpawn(upgrade, transform.position, transform.rotation);
