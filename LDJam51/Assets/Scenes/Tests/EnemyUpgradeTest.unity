@@ -283,7 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fff1e0a702f9db46adeb513c0f6a5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sampleEnemy: {fileID: 6025279282665523116, guid: 165911c00b6afa1468ba19efd83fb6b9, type: 3}
+  prefabs:
+  - {fileID: 6025279282665523116, guid: 165911c00b6afa1468ba19efd83fb6b9, type: 3}
+  - {fileID: 4595250975136054700, guid: cb9a6326ac28dac4cb56b975894d26f5, type: 3}
   spawnAmount: 10
   spawner: {fileID: 243208460}
   spawnOnStart: 1
