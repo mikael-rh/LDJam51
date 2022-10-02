@@ -2,17 +2,27 @@
 
 
 public class Timer {
-	private float startTime, targetTime;
-
-	public float Duration { get; set; }
-
-	public virtual float CurrentTime => Time.timeSinceLevelLoad;
-
 	public Timer() { }
 
 	public Timer(float duration) {
 		Reset(duration);
 	}
+
+	public bool Enabled { get; private set; }
+
+	public float StartTime { get; private set; }
+
+	public float Duration { get; private set; }
+
+	public float EndTime => StartTime + Duration;
+
+	public static float CurrentTime => Time.timeSinceLevelLoad;
+
+	public bool Done => CurrentTime >= EndTime;
+
+	public float Left => Mathf.Max(0, EndTime - CurrentTime);
+
+	public float Elapsed => Mathf.Max(0, CurrentTime - StartTime);
 
 	/// <summary>
 	/// Enables and resets the timer progress
@@ -21,9 +31,12 @@ public class Timer {
 	public void Reset(float? duration = null) {
 		if (duration != null) Duration = duration.Value;
 
-		startTime = CurrentTime;
-		targetTime = startTime + Duration;
+		StartTime = CurrentTime;
 		Enabled = true;
+	}
+
+	public void ForceDone() {
+		if (!Done) StartTime -= Left;
 	}
 
 	/// <summary>
@@ -41,14 +54,8 @@ public class Timer {
 	/// </summary>
 	/// <returns>True if the timer is done and enabled</returns>
 	public bool PerformMany() {
-		if (!Done) return false;
+		if (!Enabled || !Done) return false;
 		Reset();
 		return true;
 	}
-
-	public bool Done => CurrentTime >= targetTime;
-	public float Left => Mathf.Max(0, targetTime - CurrentTime);
-	public float Elapsed => Mathf.Max(0, CurrentTime - startTime);
-
-	public bool Enabled { get; set; } = true;
 }
