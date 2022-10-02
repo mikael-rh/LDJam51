@@ -206,10 +206,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.08
       objectReference: {fileID: 0}
-    - target: {fileID: 4504780723765171278, guid: cb9a6326ac28dac4cb56b975894d26f5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 4595250975136054700, guid: cb9a6326ac28dac4cb56b975894d26f5, type: 3}
       propertyPath: m_Name
       value: Baguette_Long
@@ -281,10 +277,6 @@ PrefabInstance:
     - target: {fileID: 8640509419099177298, guid: cb9a6326ac28dac4cb56b975894d26f5, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 8640509419099177298, guid: cb9a6326ac28dac4cb56b975894d26f5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 235083578, guid: cb9a6326ac28dac4cb56b975894d26f5, type: 3}
