@@ -189,6 +189,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3324464068179278722, guid: a71ea4e3d673712499f68c732d25448c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3324464068179278724, guid: a71ea4e3d673712499f68c732d25448c, type: 3}
       propertyPath: m_Name
       value: Donut_Ring

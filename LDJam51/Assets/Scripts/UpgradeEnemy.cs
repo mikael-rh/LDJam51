@@ -18,6 +18,6 @@ public class UpgradeEnemy : MonoBehaviour {
 		foreach (EnemyPoolConfig upgrade in upgrades) {
 			spawner.ManualSpawn(upgrade, transform.position, transform.rotation);
 		}
-		gameObject.SetActive(false);
+        gameObject.SetActive(false);
 	}
 }

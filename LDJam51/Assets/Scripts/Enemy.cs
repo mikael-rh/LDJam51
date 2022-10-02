@@ -31,6 +31,15 @@ public class Enemy : MonoBehaviour {
 		Timer.Schedule(() => FollowTarget = true, Mathf.RoundToInt(wakeupTime * 1000));
 	}
 
+    //private void OnEnable()
+    //{
+    //    if (FollowTarget && target != null)
+    //    {
+	   //     agent.SetDestination(target.position);
+    //        rb.velocity = agent.velocity;
+    //    }
+    //}
+
 	private void Update() {
 		if (FollowTarget && target != null) {
 			agent.SetDestination(target.position);
@@ -38,7 +47,7 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected() {
 		if (FollowTarget && agent != null && target != null) {
 			Gizmos.color = Color.magenta;
 			Gizmos.DrawLine(transform.position, agent.destination);
