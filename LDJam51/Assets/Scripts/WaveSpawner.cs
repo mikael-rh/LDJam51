@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour {
 	[PrefabOnly]
-	public GameObject sampleEnemy; // TODO: Allow for different enemies
+	public GameObject[] prefabs;
 
 	public int spawnAmount = 1;
 	public EnemySpawner spawner;
@@ -14,6 +14,10 @@ public class WaveSpawner : MonoBehaviour {
 	}
 
 	private void Spawn() {
-		spawner.SpawnEnemiesAtRandom(sampleEnemy, spawnAmount);
+		for (int i = 0; i < spawnAmount; i++) {
+			GameObject prefab = prefabs[Random.Range(0, prefabs.Length)];
+			bool success = spawner.SpawnEnemyAtRandom(prefab);
+			if (!success) throw new System.InvalidOperationException($"Failed to spawn {prefab.name}");
+		}
 	}
 }

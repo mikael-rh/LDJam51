@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour {
+	private int MAX_ATTEMPTS = 100;
+
 	public Transform enemyTarget;
 
 	[SerializeField]
@@ -20,27 +22,28 @@ public class EnemySpawner : MonoBehaviour {
 	//    //NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
 	//}
 
-	public void SpawnEnemiesAtRandom(GameObject enemyPrefab, int count) {
+	public bool SpawnEnemyAtRandom(GameObject enemyPrefab) {
 		Vector3 min = levelBounds.min;
 		Vector3 max = levelBounds.max;
-		int spawned = 0;
-		while (spawned < count) {
+
+		for (int i = 0; i < MAX_ATTEMPTS; i++) {
 			Vector3 p = new Vector3(
 				Random.Range(min.x, max.x),
 				Random.Range(min.y, max.y),
 				Random.Range(min.z, max.z)
 			);
 
-			if (Vector3.Distance(p, enemyTarget.position) >= minDistanceFromTarget
-				&& NavMesh.SamplePosition(p, out NavMeshHit hit, 1.0f, NavMesh.AllAreas)) {
+			if (NavMesh.SamplePosition(p, out NavMeshHit hit, 1.0f, NavMesh.AllAreas)
+				&& Vector3.Distance(p, enemyTarget.position) >= minDistanceFromTarget) {
 				// TODO: Enemy Pooling?
 				NavMeshAgent agent = enemyPrefab.GetComponent<NavMeshAgent>();
 				SpawnEnemyAt(enemyPrefab, hit.position + Vector3.up * agent.baseOffset);
-				spawned++;
+
+				return true;
 			}
 		}
 
-		Debug.Log($"Spawned {count} {enemyPrefab.name}");
+		return false;
 	}
 
 	public void SpawnEnemyAt(GameObject enemyPrefab, Vector3 position, Quaternion? rotation = null) {

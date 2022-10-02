@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class UpgradeEnemy : MonoBehaviour {
+	[PrefabOnly]
 	public GameObject[] upgrades = new GameObject[0];
 
 	private EnemySpawner spawner;
