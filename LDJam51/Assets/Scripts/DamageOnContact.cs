@@ -5,11 +5,7 @@ public class DamageOnContact : MonoBehaviour {
 	public int damage;
 	public float cooldown;
 
-	private Timer cooldownTimer;
-
-	private void Start() {
-		cooldownTimer = new();
-	}
+	private readonly Timer cooldownTimer = new();
 
 	private void TryDamage(GameObject other) {
 		PlayerState playerState = other.GetComponent<PlayerState>();

@@ -4,19 +4,16 @@ public class WaveSpawner : MonoBehaviour {
 	[PrefabOnly]
 	public GameObject sampleEnemy; // TODO: Allow for different enemies
 
-	private Timer spawnTimer;
-	public float spawnInterval = 10;
 	public int spawnAmount = 1;
 	public EnemySpawner spawner;
+	public bool spawnOnStart;
 
 	private void Start() {
-		spawnTimer = new Timer(spawnInterval);
-		spawnTimer.ForceDone();  // Start spawning immediately
+		FindObjectOfType<GlobalIntervalTimer>().PerformMany(Spawn);
+		if (spawnOnStart) Spawn();
 	}
 
-	private void Update() {
-		if (spawnTimer.PerformMany()) {
-			spawner.SpawnEnemiesAtRandom(sampleEnemy, spawnAmount);
-		}
+	private void Spawn() {
+		spawner.SpawnEnemiesAtRandom(sampleEnemy, spawnAmount);
 	}
 }

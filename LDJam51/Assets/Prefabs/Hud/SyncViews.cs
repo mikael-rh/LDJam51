@@ -12,6 +12,8 @@ public class SyncViews : MonoBehaviour
     Scrollbar healthBar;
     [SerializeField]
     Scrollbar staminaBar;
+    [SerializeField]
+    Image intervalBar;
 
     [SerializeField]
     GameObject goalIndicator;
@@ -21,15 +23,19 @@ public class SyncViews : MonoBehaviour
     [SerializeField]
     GameObject uiGoalLeftIndicator;
 
+    private GlobalIntervalTimer globalIntervalTimer;
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Assert(playerState != null);
         Debug.Assert(healthBar != null);
         Debug.Assert(staminaBar != null);
+        Debug.Assert(intervalBar != null);
         Debug.Assert(goalIndicator != null);
 
         goalIndicatorRenderer = goalIndicator.GetComponentInChildren<Renderer>();
+        globalIntervalTimer = FindObjectOfType<GlobalIntervalTimer>();
     }
 
     // Update is called once per frame
@@ -38,6 +44,7 @@ public class SyncViews : MonoBehaviour
         // HACK: forcing sync each frame for each UI element is bad. Should utilize the setter to update all values when needed ...
         healthBar.size = playerState.HealthFloat;
         staminaBar.size = playerState.StaminaFloat;
+        intervalBar.fillAmount = globalIntervalTimer.Progress;
 
         if (playerState.LookingForGoal)
         {
