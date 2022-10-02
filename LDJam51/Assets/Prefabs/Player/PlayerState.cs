@@ -27,14 +27,28 @@ public class PlayerState : MonoBehaviour
     [SerializeField]
     private OnPlayerDeath onDeath;
 
-    // TODO: abstraction for weapon
     [SerializeField]
-    private Weapon equippedWeapon;
-    public Weapon EquippedWeapon { get => equippedWeapon; }
+    private int equippedWeaponIndex;
+    public int EquippedWeaponIndex { set {
+            weapons[equippedWeaponIndex].gameObject.SetActive(false);
+            equippedWeaponIndex = value;
+            weapons[equippedWeaponIndex].gameObject.SetActive(true);
+        }
+    }
+
+    [SerializeField]
+    private Weapon[] weapons;
+    public Weapon EquippedWeapon { get => weapons[equippedWeaponIndex]; }
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Assert(equippedWeaponIndex < weapons.Length);
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            weapons[i].gameObject.SetActive(i == equippedWeaponIndex);
+        } 
+
         health = maxHealth;
         stamina = 1;
     }
@@ -74,7 +88,7 @@ public class PlayerState : MonoBehaviour
 
 #if DEBUG
     [ContextMenu("Ouch")]
-    public void Debug()
+    public void Ouch()
     {
         ApplyDamage(100);
     }

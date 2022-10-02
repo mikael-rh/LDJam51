@@ -45,10 +45,18 @@ public class WaveSpawner : MonoBehaviour {
             GameObject[] pool = pools[enemyTypeIndex];
             GameObject instance = pool[nextInstance[enemyTypeIndex]];
             nextInstance[enemyTypeIndex] = (nextInstance[enemyTypeIndex] + 1) % pool.Length;
-            bool success = spawner.SpawnEnemyAtRandom(instance, enemyTarget.position);
-            if (!success)
+
+            // TODO: fix this
+            if (enemyTarget != null)
             {
-                Debug.Log($"Failed to spawn {instance.name}");
+                bool success = spawner.SpawnEnemyAtRandom(instance, enemyTarget.position);
+                if (!success)
+                {
+                    Debug.Log($"Failed to spawn {instance.name}");
+                }
+            } else
+            {
+                Debug.Log("hit annoying bug...");
             }
         }
 	}
