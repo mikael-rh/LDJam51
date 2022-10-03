@@ -1,35 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class OnPlayerDeath : MonoBehaviour
-{
-    [SerializeField]
-    private Behaviour[] disabledBehaviours;
-    [SerializeField]
-    private GameObject[] disabledObjects;
+public class OnPlayerDeath : MonoBehaviour {
+	public UnityEvent OnTrigger = new UnityEvent();
 
-    [SerializeField]
-    private GameObject deathHud;
+	[SerializeField]
+	private Behaviour[] disabledBehaviours;
+	[SerializeField]
+	private GameObject[] disabledObjects;
 
-    private bool hasTriggered = false;
+	[SerializeField]
+	private GameObject deathHud;
 
-    public void Trigger()
-    {
-        if (hasTriggered) return;
+	private bool hasTriggered = false;
 
-        foreach (Behaviour behaviour in disabledBehaviours)
-        {
-            behaviour.enabled = false;
-        }
+	public void Trigger() {
+		if (hasTriggered) return;
 
-        foreach (GameObject obj in disabledObjects)
-        {
-            obj.SetActive(false);
-        }
+		foreach (Behaviour behaviour in disabledBehaviours) {
+			behaviour.enabled = false;
+		}
 
-        deathHud.SetActive(true);
+		foreach (GameObject obj in disabledObjects) {
+			obj.SetActive(false);
+		}
 
-        hasTriggered = true;
-    }
+		deathHud.SetActive(true);
+
+		hasTriggered = true;
+		OnTrigger.Invoke();
+	}
 }

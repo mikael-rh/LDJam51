@@ -575,6 +575,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 1.1999512
       objectReference: {fileID: 0}
+    - target: {fileID: 7733447500564842423, guid: 8426e0c06df76a241b655946a9e4f429, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733447500564842423, guid: 8426e0c06df76a241b655946a9e4f429, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733447500564842423, guid: 8426e0c06df76a241b655946a9e4f429, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4046850565558177338}
+    - target: {fileID: 7733447500564842423, guid: 8426e0c06df76a241b655946a9e4f429, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733447500564842423, guid: 8426e0c06df76a241b655946a9e4f429, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FreeCursor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733447500564842423, guid: 8426e0c06df76a241b655946a9e4f429, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ConfigureCursor, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733447500564842423, guid: 8426e0c06df76a241b655946a9e4f429, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8426e0c06df76a241b655946a9e4f429, type: 3}
 --- !u!4 &1163368142 stripped
@@ -704,6 +732,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1600500713, guid: 5f1df367aac4f3544933a7f21ce5819b, type: 3}
+      propertyPath: initLockMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4046850564344199840, guid: 5f1df367aac4f3544933a7f21ce5819b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -783,6 +815,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8a794fbc583c6f4bbb666dbbeffa453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4046850565558177338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1600500713, guid: 5f1df367aac4f3544933a7f21ce5819b, type: 3}
+  m_PrefabInstance: {fileID: 4046850565558177334}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046850565558177335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df3880b4866bfb47a0d0ad25be3d52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4046850565558177339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046850565558177335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24a95b429271d84a93250d23e46b382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyCode: 27
+  OnKeyUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4046850565558177337}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  triggerOnce: 1
 --- !u!1001 &5848155549193007621
 PrefabInstance:
   m_ObjectHideFlags: 0
